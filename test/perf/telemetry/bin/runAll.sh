@@ -24,7 +24,7 @@
 #
 
 RESULTS_DIR=/tmp/topcoat-telemetry
-USE_CEF=true
+USE_CEF=false
 
 function checkEnvVars() {
     if [ -z "$DEVICE_NAME" ] 
