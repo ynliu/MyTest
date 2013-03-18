@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Copyright 2012 Adobe Systems Inc.;
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -57,7 +57,7 @@ function prepareResultsDir() {
 
 function prepareTelemetryTests() {
     echo "runAll.sh: Preparing telemetry tests"
-    grunt telemetry    
+    grunt telemetry --config Gruntfile.js
 }
 
 function runTests() {
@@ -70,7 +70,7 @@ function runTests() {
         browserParams="--browser=system"
     fi
 
-    testFiles=$(ls perf/telemetry/perf/page_sets/*.json);
+    testFiles=$(ls test/perf/telemetry/perf/page_sets/*.json);
 
     currentDir=`pwd`
     cd $CHROMIUM_SRC/tools/perf
@@ -92,7 +92,7 @@ function submitResults() {
 
     for resultFile in $RESULTS_DIR/* 
     do
-        grunt telemetry-submit --path=$resultFile --device \"$DEVICE_NAME\"    
+        grunt telemetry-submit --path=$resultFile --device \"$DEVICE_NAME\" --config Gruntfile.js
     done    
 }
 
@@ -102,4 +102,3 @@ prepareResultsDir
 prepareTelemetryTests
 runTests
 submitResults
-
