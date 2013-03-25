@@ -109,7 +109,7 @@ class TestHelper():
                 TestHelper.GRUNT,
                 "telemetry-submit",
                 "--path=" + rf,
-                "--deivce=" + TestHelper.DEVICE_NAME
+                "--device=" + TestHelper.DEVICE_NAME
             ])
 
 

@@ -15,8 +15,8 @@ limitations under the License.
 
 function settings (contentLength) {
 	var post_options = {
-		host: 'bench.topcoat.io',
-		port: '80',
+		host: '153.32.67.73',
+		port: '3000',
 		path: '/v2/benchmark',
 		method: 'POST',
 		headers: {
