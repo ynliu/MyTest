@@ -24,7 +24,7 @@
 #
 
 RESULTS_DIR=/tmp/topcoat-telemetry
-USE_CEF=false
+USE_CEF=true
 
 function checkEnvVars() {
     if [ -z "$DEVICE_NAME" ] 
@@ -70,7 +70,7 @@ function runTests() {
         browserParams="--browser=system"
     fi
 
-    testFiles=$(ls perf/telemetry/perf/page_sets/*.json);
+    testFiles=$(ls ../perf/page_sets/*.json);
 
     currentDir=`pwd`
     cd $CHROMIUM_SRC/tools/perf
@@ -92,7 +92,7 @@ function submitResults() {
 
     for resultFile in $RESULTS_DIR/* 
     do
-        grunt telemetry-submit --path=$resultFile --device \"$DEVICE_NAME\"    
+        grunt telemetry-submit --path=$resultFile --device $DEVICE_NAME   
     done    
 }
 

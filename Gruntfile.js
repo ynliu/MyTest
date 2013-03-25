@@ -25,7 +25,7 @@ component = { /* see https://github.com/component/component/wiki/Spec for a desc
     styles: [],
     images: [],
     fonts: [],
-    files: []
+    files: [],
 },
     _ = require('underscore'),
     fs = require('fs'),
@@ -84,9 +84,7 @@ module.exports = function(grunt) {
                     src: ['**'],
                     dest: path.join(chromiumSrc, 'tools/perf/')
                 }, {
-                    expand: true,
-                    cwd: 'release/',
-                    src: ['**/*'],
+                    src: ['release/**'],
                     dest: path.join(chromiumSrc, 'tools/perf/page_sets/topcoat/')
                 }, {
                     expand: true,
@@ -225,11 +223,15 @@ module.exports = function(grunt) {
                 grunt.log.error('Error');
                 console.log(error);
                 done();
+
             } else {
 
-                var path = grunt.option('path'),
-                    device = grunt.option('device'),
-                    test = grunt.option('test');
+                var path = grunt.option('path')
+                ,   device = grunt.option('device')
+                ,   test = grunt.option('test')
+                ,   host = process.env.TOPCOAT_BENCHMARK_SERVER
+                ,   port = process.env.TOPCOAT_BENCHMARK_PORT
+                ;
 
                 if (!path) {
                     console.log('No path file specified');
@@ -239,6 +241,9 @@ module.exports = function(grunt) {
                     submitData(stdout, path, {
                         device: device,
                         test: test
+                    }, {
+                        host : host,
+                        port : port
                     });
                 }
             }
