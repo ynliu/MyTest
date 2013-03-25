@@ -20,6 +20,7 @@
 #  - TestHelper.CHROMIUM_SRC: path to chromium src
 #  - DEVICE_NAME: a label to identify the machine running the tests when submitting results
 #  - CEF_HOME: path to CEF binaries (needed only if USE_CEF is set to True)
+#  - USE_CEF: if run with CEF, set this to 'True'
 #
 
 import os
@@ -30,8 +31,6 @@ import platform
 
 
 class TestHelper():
-    USE_CEF      = True
-
     GRUNT        = "grunt"
     RESULTS_DIR  = "/tmp/topcoat-telemetry"
     BROWSER	     = "system"
@@ -40,6 +39,7 @@ class TestHelper():
     CHROMIUM_SRC = os.environ.get("CHROMIUM_SRC")
     DEVICE_NAME  = os.environ.get("DEVICE_NAME")
     CEF_HOME     = os.environ.get("CEF_HOME")
+    USE_CEF      = os.environ.get("USE_CEF")
 
     @staticmethod
     def init():
@@ -63,7 +63,10 @@ class TestHelper():
         if not TestHelper.CHROMIUM_SRC:
             raise RuntimeError("Please set CHROMIUM_SRC env var.")
 
-        if TestHelper.USE_CEF and not TestHelper.CEF_HOME:
+        if TestHelper.USE_CEF
+            raise RuntimeError("Please set USE_CEF env var.")
+
+        if (TestHelper.USE_CEF == 'True') and (not TestHelper.CEF_HOME):
             raise RuntimeError("Please set CEF_HOME if you set USE_CEF to True")
 
     @staticmethod
