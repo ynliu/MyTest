@@ -114,7 +114,7 @@ class TestHelper():
                 TestHelper.CHROMIUM_SRC + "tools/perf/page_sets/%s" % topcoat_test_file,
                 "-o", TestHelper.RESULTS_DIR + "/%s_%s.txt" % (telemetry_test, topcoat_test_name)
             ]
-            if TestHelper.USE_CEF:
+            if TestHelper.BROWSER_EXEC:
                 cmd.insert(3, "--browser-executable=" + TestHelper.BROWSER_EXEC)
             return cmd
 
