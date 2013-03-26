@@ -102,4 +102,3 @@ prepareResultsDir
 prepareTelemetryTests
 runTests
 submitResults
-
