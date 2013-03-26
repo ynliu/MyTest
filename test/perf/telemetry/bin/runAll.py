@@ -63,7 +63,7 @@ class TestHelper():
         if not TestHelper.CHROMIUM_SRC:
             raise RuntimeError("Please set CHROMIUM_SRC env var.")
 
-        if TestHelper.USE_CEF
+        if TestHelper.USE_CEF:
             raise RuntimeError("Please set USE_CEF env var.")
 
         if (TestHelper.USE_CEF == 'True') and (not TestHelper.CEF_HOME):
