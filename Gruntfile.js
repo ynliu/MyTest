@@ -28,6 +28,7 @@ component = { /* see https://github.com/component/component/wiki/Spec for a desc
     files: [],
 },
     _ = require('underscore'),
+    os = require('os'),
     fs = require('fs'),
     path = require('path'),
     chromiumSrc = process.env.CHROMIUM_SRC;
@@ -101,7 +102,8 @@ module.exports = function(grunt) {
                 options: {
                     data: {
                         debug: false,
-                        pretty: true
+                        pretty: true,
+                        target: os.platform() == 'linux' ? 'mobile' : 'desktop'
                     }
                 },
                 files: [{ //todo see if expandMapping can be used instead of listing them all - https://github.com/gruntjs/grunt-contrib/issues/95
@@ -215,7 +217,7 @@ module.exports = function(grunt) {
     grunt.registerTask('telemetry-submit', 'Submit telemetry test results', function() {
 
         var exec = require("child_process").exec,
-            commandToBeExecuted = 'git log --pretty=format:"%H %ai" | head -n 1',
+            commandToBeExecuted = 'git log --pretty=format:"%H %ci" | head -n 1',
             done = this.async();
 
         exec(commandToBeExecuted, function(error, stdout, stderr) {
